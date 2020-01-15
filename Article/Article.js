@@ -115,8 +115,42 @@ const data = [
 
 function createArticle(title, date, firstP, secondP, thirdP){
 
-  
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const paragraph1 = document.createElement('p');
+  const paragraph2 = document.createElement('p');
+  const paragraph3 = document.createElement('p');
+  const span = document.createElement('span');
 
+  span.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  article.append(articleTitle);
+  article.append(articleDate);
+  article.append(paragraph1);
+  article.append(paragraph2);
+  article.append(paragraph3);
+  article.append(span);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  span.classList.add('expandButton');
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  paragraph1.textContent = firstP;
+  paragraph2.textContent = secondP;
+  paragraph3.textContent = thirdP;
+  span.textContent = 'press me';
+
+  return article;
 }
 
+const article = document.querySelector('.articles');
 
+data.map(data => {
+    article.append(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+    console.log(data)
+});
